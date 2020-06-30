@@ -39,4 +39,9 @@ gulp.task("go",async()=>{
         .pipe(uglify())
         .pipe(gulp.dest("D:\\wamp\\www\\zhongLiang\\cofco_upxian\\js"))
     })
+    gulp.watch("./src/php/*.php",async()=>{
+        gulp.src("./src/php/*.php")
+        .pipe(gulp.dest("D:\\wamp\\www\\zhongLiang\\cofco_upxian\\php"))
+        
+    })
 })
