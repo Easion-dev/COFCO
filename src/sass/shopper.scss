@@ -1,0 +1,151 @@
+.advbig {
+    width: 1210px;
+    height: 60px;
+    margin: 0 auto;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.screen {
+    width: 1210px;
+    height: 144px;
+    border: 1px solid #ccc;
+    margin: 40px auto 40px;
+
+    >li {
+        height: 46px;
+        line-height: 46px;
+        font: 12px/150% Arial, Tahoma, "宋体";
+        border: 1px solid #ccc;
+        color: #757575;
+
+        // background-color: orange;
+        div:nth-of-type(1) {
+            width: 118px;
+            height: 28px;
+            text-align: left;
+            background-color: #f5f5f5;
+            padding: 10px 0 8px 20px;
+            float: left;
+        }
+
+        div:nth-of-type(2) {
+            span {
+                width: 100px;
+                height: 46px;
+                text-align: center;
+                line-height: 38px;
+                margin-left: 50px;
+            }
+        }
+    }
+}
+
+#shopperA {
+    width: 1210px;
+    min-height: 1600px;
+    // background-color: #ccc;
+    margin: 4px auto;
+
+    >ul {
+        >li {
+            min-width: 234px;
+            min-height: 400px;
+            float: left;
+            transition: 0.4s;
+            &:hover{
+                box-shadow: 0 4px 6px  rgba(0,0,0,22);
+            }
+            margin-top: 4px;
+            // margin:2px;
+
+            .pImg {
+                width: 220px;
+                height: 220px;
+                margin: 0 auto;
+                margin-top: 30px;
+                // background-color: #ccc;
+
+                img {
+                    width: 220px;
+                    height: 220px;
+                }
+            }
+
+            .price {
+                width: 240px;
+                height: 34px;
+                text-align: left;
+                font: 20px/34px "微软雅黑";
+                color: #C40000;
+                font-weight: 40;
+
+                span {
+                    font-weight: 500;
+                }
+            }
+
+            .list_title {
+                width: 220px;
+                height: 38px;
+                margin: 0 auto 26px;
+
+                a {
+                    &:hover {
+
+                        text-decoration: underline;
+                    }
+
+                    p {
+                        font: 12px/150% Arial, Tahoma, "宋体";
+                        line-height: 19px;
+                        color: #000;
+                        height: 38px;
+                        overflow: hidden;
+
+                        &:hover {
+                            color: #90c71b;
+                        }
+                    }
+                }
+
+            }
+
+            .rated {
+                width: 220px;
+                height: 40px;
+                text-align: center;
+                margin-top: 10px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                >span {
+                    display: block;
+                    min-width: 52px;
+                    height: 30px;
+                    float: left;
+                    line-height: 30px;
+                    border-right: 1px solid #ededed;
+                    border-bottom: 1px solid #ededed;
+                    text-align: center;
+                    cursor: pointer;
+
+                    a {
+                        font: 14px Arial, Tahoma, "宋体";
+                        color: #757575;
+                        line-height: 30px;
+                        &:hover{
+                            color: #90c71b;
+                            text-decoration: underline;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

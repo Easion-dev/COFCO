@@ -1,0 +1,191 @@
+#detail_wrap {
+    width: 1210px;
+    height: 516px;
+    margin: 0 auto;
+    margin-top: 10px;
+
+    .detail_c {
+        width: 970px;
+        height: 516px;
+
+        // background-color: #ccc;
+        .img_l {
+            width: 400px;
+            height: 516px;
+            border: 1px solid #ccc;
+            position: relative;
+            float: left;
+
+            img {
+                width: 400px;
+                height: 516px;
+            }
+            .mirror-box{
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                background-color: #ccc;
+                top:0px;
+                left:0px;
+                // display: none;
+                opacity: 0;
+            }
+            .show-box{
+                width: 300px;
+                height: 300px;
+                position: absolute;
+                top:6px;
+                right: -380px;
+                // background-color: #ccc;
+                border: 1px solid #ccc;
+                display: none;
+                // background-size: 2000px 3000px;
+            }
+
+        }
+
+        .shop_r {
+            width: 540px;
+            height: 388px;
+            margin-left: 20px;
+            float: left;
+            // background-color: #ccc;
+
+            .shop_top {
+                width: 540px;
+                height: 22px;
+                line-height: 22px;
+                margin: 5px 0;
+                font: bold 16px/22px "微软雅黑";
+                color: #666;
+
+
+            }
+
+            .price_top {
+                width: 540px;
+                height: 36px;
+                padding-left: 16px;
+                padding-top: 20px;
+                background-color: #f5f5f5;
+                // background-color: #666;
+                overflow: hidden;
+
+                .price {
+                    width: 86px;
+                    height: 24px;
+                    float: left;
+                    font-weight: bold;
+                    line-height: 24px;
+                    font-size: 26px;
+                    font-family: "微软雅黑";
+                    color: #c40000;
+
+                    em {
+                        font: 12px/150% Arial, Tahoma, "宋体";
+                        font-weight: bold;
+                        line-height: 24px;
+                        color: #c40000;
+                        font-style: normal;
+                        font-size: 20px;
+                    }
+                }
+
+                .lingshou {
+                    float: left;
+                    height: 18px;
+                    margin: 6px 10px 0px 10px;
+                    padding: 0 5px;
+                    font-family: "微软雅黑";
+                    line-height: 18px;
+                    background: #c40000;
+                    color: #fff;
+                }
+
+                >a {
+                    font: 12px/150% Arial, Tahoma, "宋体";
+                    color: #666;
+                    margin-top: 4px;
+                }
+            }
+
+            .song {
+                width: 300px;
+                height: 34px;
+                margin: 10px;
+            }
+
+            .odd{
+                width: 100px;
+                height: 20px;
+                // background-color: #ccc;
+                margin: 20px;
+                .jia{
+                    width: 30px;
+                    height: 30px;
+                    // border: 1px solid #ccc;
+                    background-color: #f5f5f5;
+                    text-align: center;
+                    line-height: 30px;
+                    float: left;
+                    cursor: pointer;
+                }
+                .zhi{
+                    width: 28px;
+                    height: 28px;
+                    border: 1px solid #ccc;
+                    text-align: center;
+                    float: left;
+                }
+                .jian{
+                    width: 30px;
+                    height: 30px;
+                    // border: 1px solid #ccc;
+                    background-color: #f5f5f5;
+                    text-align: center;
+                    line-height: 30px;
+                    float: left;
+                    cursor: pointer;
+
+                }
+            }
+
+            #buy {
+                margin-left: 4px;
+                cursor: pointer;
+                width: 194px;
+                height: 24px;
+                color: #fff;
+                font: 16px/24px "微软雅黑";
+                text-align: center;
+                padding-top: 11px;
+                padding-bottom: 11px;
+                background: #3ea600;
+            }
+
+        }
+    }
+}
+
+.buy_detail {
+    width: 730px;
+    height: 40px;
+    margin: 40px 500px 20px 800px;
+    // background-color: #666;
+    
+    
+
+    >li {
+        font: bold 14px/40px "微软雅黑";
+        color: #383838;
+        min-width: 68px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        float: left;
+        padding: 0 6px;
+        margin-right: 30px;
+        cursor: pointer;
+        background-color: #cccccc;
+    }
+}

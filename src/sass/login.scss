@@ -1,0 +1,211 @@
+#register {
+    width: 1000px;
+    height: 626px;
+    // background-color: #cccccc;
+    margin: 0 auto;
+
+    .top {
+        width: 1000px;
+        height: 96px;
+        // background-color: #ccc;
+        padding-top: 10px;
+        border-bottom: 2px #43a41b solid;
+
+        .top_l {
+            width: 220px;
+            height: 80px;
+            float: left;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .top_title {
+            font: 12px/150% "Microsoft YaHei";
+            float: left;
+            margin: 20px;
+            font-size: 20px;
+            line-height: 36px;
+            color: #333333;
+            font-family: "Microsoft YaHei" ! important;
+        }
+
+        .top_login {
+            font: 12px/150% "Microsoft YaHei";
+            color: #606060;
+            float: right;
+            margin: 20px;
+            font-size: 16px;
+            line-height: 36px;
+
+            a {
+                width: 48px;
+                height: 21px;
+                cursor: pointer;
+                color: #333333;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .main {
+        width: 1000px;
+        height: 500px;
+        padding-top: 10px;
+
+        background: url(../img/login.jpg) no-repeat;
+        // background-size: 600px 800px auto;
+
+        // background-color: #ccc;
+        .mc_inside {
+            width: 500px;
+            height: 460px;
+            padding-top: 10px;
+            margin-left: 410px;
+            background-color: #f7f8f8;
+
+            .mc_content {
+                width: 350px;
+                height: 398px;
+                margin: 0 auto 0;
+                // background-color: #fff;
+                border: 1px solid #fff;
+
+                // position: relative;
+                .mc_top {
+                    font: 12px/150% Arial, Tahoma, "宋体";
+                    width: 250px;
+                    height: 20px;
+                    line-height: 20px;
+                    text-align: center;
+                    color: #595757;
+                    font-size: 16px;
+                    font-family: "Microsoft YaHei";
+                    position: relative;
+                }
+
+                .mc_cc {
+                    display: block;
+                    width: 304px;
+                    height: 18px;
+                    padding: 6px 13px;
+                    border: #ccc 1px solid;
+                    font-size: 14px;
+                    margin: 20px;
+                    margin-left: 0;
+                    background-color: #fff;
+
+                    // position: relative;
+                    >input {
+                        width: 220px;
+                        height: 18px;
+                        border: 0px;
+                    }
+
+                    >span {
+                        // position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        text-align: center;
+                        line-height: 10px;
+                        font-size: 20px;
+                        float: right;
+                        color: #479202;
+                        margin-top: 2px;
+                        // right: -10px;
+                        // top: 24px;
+
+                        // float: right;
+                    }
+                }
+
+                .wangji {
+                    width: 340px;
+                    height: 18px;
+                
+                    // margin-bottom: 10px;
+                    // float: right;
+
+                    a {
+                        width: 84px;
+                        height: 18px;
+                        font-size: 12px;
+                        color: #aaaaaa;
+                        float: right;
+                        ;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+
+                
+
+                .mc_btn {
+                    min-width: 280px;
+                    height: 36px;
+                    margin: 20px;
+                    margin-left: 4px;
+                    // border: 0px;
+
+                    input {
+                   
+                        display: block;
+                        line-height: 30px;
+                        font-family: "Microsoft YaHei";
+                        font-weight: bold;
+                        font-size: 16px;
+                        text-decoration: none;
+                        width: 209px;
+                        height: 30px;
+                        float: left;
+                        color: #fff;
+                        cursor: pointer;
+                        border: 0px;
+                        background-color: #90c71b;
+                        border: 1px solid #90c71b;
+                        border-radius: 10%;
+                    }
+
+                    span {
+                        font: 12px/150% "Microsoft YaHei";
+                        text-align: center;
+                        width: 78px;
+                        height: 30px;
+                        line-height: 30px;
+                        // line-height: 16px;
+                        // padding-top: 14px;
+                        float: left;
+                        color: #479202;
+                        cursor: pointer;
+                        font-size: 14px;
+                        background-color: #e2e2e2;
+                        margin-left: 30px;
+                        border: 1px solid #e2e2e2;
+                        border-radius: 10%;
+
+                        a{
+                            width: 78px;
+                            height: 30px;
+                            float: left;
+                        }
+                        }
+                }
+                
+                .foot_img{
+                    width: 280px;
+                    height: 260px;
+                    
+                }
+            }
+        }
+    }
+}

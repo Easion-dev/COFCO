@@ -172,14 +172,17 @@
                 }
 
                 .mc_btn {
-                    width: 277px;
-                    height: 36px;
-                    margin: 20px;
-                    margin-left: 20px;
-                    background-color: #43a41b;
+                    // min-width:276px;
+                    // height: 36px;
+                    // margin: 20px;
+                    // margin-left: 20px;
+                    // background-color: #43a41b;
+                    // border: 1px solid #43a41b;
+                    // outline: none;
+
 
                     input {
-                        width: 277px;
+                        width: 276px;
                         height: 36px;
                         color: #fff;
                         text-align: center;
@@ -187,6 +190,10 @@
                         cursor: pointer;
                         background-color: #43a41b;
                         font-size: 18px;
+                        border: 0px;
+                        margin-left: 16px;
+                        // outline: none;
+                        // &:focus {outline:none;}
                     }
 
                     span {

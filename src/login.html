@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div id="register">
+        <div class="top">
+            <div class="top_l">
+                <img src="./img/logo.png" alt="">
+            </div>
+            <div class="top_title">欢迎登陆</div>
+            
+        </div>
+        <div class="main">
+            <div class="mc_inside">
+                <div class="mc_content">
+                    <div class="mc_top">请登录中粮我买网</div>
+                    <div class="mc_cc">
+                        <input id="phone" type="text" placeholder="手机"><span></span>
+                    </div>
+                    <div class="mc_cc">
+                        <input id="password" type="text" placeholder="密码"><span></span>
+                    </div>
+                    <div class="wangji"><a href="">忘记登陆密码？</a></div>
+
+                    <div class="mc_btn">
+                        <input id="btn" type="button" value="立即登陆">
+                        <span><a href="./register.html">注册</a> </span>
+                    </div>
+
+                    <div class="foot_img">
+                        <img src="./img/login_foot.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery-3.4.1.min.js"></script>
+<script src="./js/index-footer.js"></script>
+<script src=""></script>
+<script>
+    $(function () {
+    $("#phone").val("1233333");
+    $("#password").val("111 ");
+    let check = {
+        "phone": {
+            reg: `/^1[2-9]\\d{3,9}$/.test(val)`,
+            msg: "×"
+        },
+        "password": {
+            reg: `/^[a-zA-Z0-9]{3,6}$/.test(val)`,
+            msg: "×"
+        }
+    }
+
+    $(".mc_content .mc_cc input").blur(function () {
+        let check_id = this.id;
+        let val = $.trim($(this).val());
+
+        if (eval(check[check_id].reg)) {
+            $(this).next().text("√")
+        } else {
+            $(this).next().text("×")
+
+        }
+    })
+    $("#btn").click(function () {
+        $("#phone,#password").trigger("blur");
+        let arr_check;
+        let arr_c=document.querySelectorAll(".mc_cc span");
+        // console.log(arr_c);
+        for(let key in arr_c){
+            if(arr_c[key].innerText =="×"){
+                arr_check = "×";
+            }   
+
+        }
+        
+
+        
+        if (arr_check == "×") {
+            alert("注册信息依然有错请重新输入")
+            return
+        }
+        
+        let data = {
+            phone: $.trim($("#phone").val()),
+            password: $.trim($("#password").val()).slice(0, 15)
+        }
+        // console.log(data);
+
+        $.ajax({
+            type:"post",
+            url: "./php/login.php",
+            data,
+            dataType: "json"
+        }).done(data => {
+            if (data.status == "success") {
+                alert("登陆成功")
+                localStorage.setItem("username",data.username);
+                location.href="./index.html"
+               
+            } else {
+                alert(data.msg);
+
+            }
+        })
+
+
+    })
+})
+
+
+
+</script>
