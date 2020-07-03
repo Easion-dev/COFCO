@@ -608,11 +608,11 @@
     let getId = location.search.split("=")[1];
     console.log(getId);
 
-    let username = localStorage.getItem("username");
-    if (localStorage.getItem("username")) {
-        $(".nav_r_li").text(localStorage.getItem("username") + "的账户")
-        $("#login_c").css("display", "none")
-    }
+    // let username = localStorage.getItem("username");
+    // if (localStorage.getItem("username")) {
+    //     $(".nav_r_li").text(localStorage.getItem("username") + "的账户")
+    //     $("#login_c").css("display", "none")
+    // }
 
 
     function fangdajing() {
@@ -673,10 +673,15 @@
 
 
     function shopcount() {
+
         $(".jia").click(function () {
             let count = $(".zhi").val()
             count++;
             $(".zhi").val(count)
+            $(".zhi").val() * 1
+            // console.log(num_zhi);
+
+
         })
         $(".jian").click(function () {
             let count = $(".zhi").val()
@@ -685,7 +690,10 @@
                 count = 1
             }
             $(".zhi").val(count)
+            $(".zhi").val() * 1
+
         })
+
     }
 
 
@@ -717,17 +725,46 @@
                 </div>
                 <div class="song"><img src="./img/songzhi.png" alt=""></div>
                 <div class="odd">
+                    <div class="shu">数量：</div>
                     <div class="jia">+</div>
                     <input type="text" class="zhi" value="1">
                     <div class="jian">-</div>
                 </div>
-                <div id="buy">加入购物车</div>
+                
+                    <div id="buy">加入购物车</div>
+                    
             </div>
 
             `
         $(".detail_c").html(htmlstr);
 
         fangdajing()
+
+        // var num_zhi =0;
         shopcount()
+
+
+        let phone = localStorage.getItem("phone");
+        $("#buy").click(function () {
+            $.ajax({
+                url: "./php/detailTOcar.php",
+                data: {
+                    "phone": phone,
+                    "goodsId": getId,
+                    "num": $(".zhi").val() * 1
+                },
+                dataType: "json"
+            }).done(data => {
+                console.log(data);
+                if(data.status =="success"){
+                    alert("加入购物车成功，如想进入购物车请点击上方购物车")
+
+                }
+               
+
+            })
+
+        })
+
     })
 </script>

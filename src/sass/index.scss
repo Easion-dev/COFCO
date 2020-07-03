@@ -61,20 +61,27 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                li{
+
+                li {
                     min-width: 10px;
                     height: 32px;
                     float: left;
                     display: block;
                     color: #606060;
+
                     // cursor: pointer;
-                    a{
+                    a {
                         width: 100%;
                         height: 100%;
+                        color: #606060;
+
                         // cursor: pointer;
+                        &:hover {
+                            color: #3a9900;
+                        }
                     }
                 }
-                
+
             }
         }
 
@@ -85,7 +92,7 @@
 
             .nav_ul {
                 >li:nth-of-type(1) {
-                    width: 84px;
+                    width: 74px;
                     height: 32px;
                     float: left;
                     @include nav_font;
@@ -122,6 +129,20 @@
                     width: 89px;
                     height: 100%;
                     float: left;
+                    color: #606060;
+
+                    &:hover {
+                        color: #3a9900;
+                    }
+
+                    a {
+                        color: #606060;
+
+                        &:hover {
+                            color: #3a9900;
+                        }
+                    }
+
                     @include nav_font;
                 }
 
@@ -182,7 +203,7 @@
     margin: 35px auto 30px;
     position: sticky;
     top: 0;
-    z-index:500;
+    z-index: 500;
     background-color: #fff;
 
     .logo {
@@ -332,7 +353,7 @@ Tahoma,
             background-color: #3ea600;
             z-index: 100;
             // display: none;
-            
+
 
             >li {
                 color: #606060;
@@ -534,6 +555,7 @@ Tahoma,
                     text-align: center;
                     float: left;
 
+                    // transition: 2s;
                     img {
                         width: 65px;
                         height: 60px;
@@ -781,6 +803,9 @@ Tahoma,
                 height: 250px;
                 border-right: 1px solid #ccc;
                 border-bottom: 1px solid #ccc;
+                position: relative;
+                overflow: hidden;
+
                 // background-color: pink;
                 float: left;
 
@@ -789,8 +814,17 @@ Tahoma,
                     height: 190px;
 
                     img {
-                        width: 100%;
-                        height: 100%;
+                        width: 220px;
+                        height: 170px;
+                        margin-left:10px;
+                        position: absolute;
+                        transition-duration: 3s;
+                       
+
+                        /* Opera */
+                        // &:hover {
+                        //     left: 20px;
+                        // }
                     }
                 }
 
@@ -968,8 +1002,9 @@ Tahoma,
 }
 
 .foot_fn {
-    width: 1904px;
+    width: 100%;
     height: 196px;
+    margin: 0 auto;
 
     .fn_wrap {
         width: 1210px;
@@ -979,8 +1014,9 @@ Tahoma,
         // background-color: pink;
 
         .wrap_link {
-            width: 1210px;
+            width: 1170px;
             height: 22px;
+            margin-left: 40px;
 
             a {
                 font: 12px/150% Arial, Tahoma, "宋体";
@@ -1038,21 +1074,23 @@ Tahoma,
         }
     }
 }
-.nav{
-    width:40px;
-    height:250px;
+
+.nav {
+    width: 40px;
+    height: 250px;
     position: fixed;
-    left:300px;
-    top:200px;
+    left: 300px;
+    top: 200px;
 }
-.nav a{
-    display:block;
-    width:40px;
-    height:40px;
-    margin-bottom:5px;
-    background:red;
-    text-align:center;
-    line-height:40px;
-    font-size:20px;
-    color:#fff;
+
+.nav a {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    background: red;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #fff;
 }

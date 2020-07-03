@@ -49,7 +49,7 @@
                     </li>
                     <li>
                         <span class="iconfont icon-gouwucheman"></span>
-                        <span>购物车<span>0</span>件</span>
+                        <a href="./shopperCar.html" target='_blank'><span>购物车<span id="car_jian">0</span>件</span></a>
                     </li>
                     <li class="t_item">|</li>
                     <li>客户服务↓</li>
@@ -912,18 +912,7 @@
         </div>
     </div>
 
-    <div class="width">
-        <div class="float-nav" style="margin-top: -117px; margin-left: -660px; display: block;">
-            <ul>
-                <li class="curr"><a href="javascript:void(0)"><b>进口食品</b></a></li>
-                <li class=""><a href="javascript:void(0)"><b>奶制品</b></a></li>
-                <li class=""><a href="javascript:void(0)"><b>休闲保健</b></a></li>
-                <li class=""><a href="javascript:void(0)"><b>酒饮冲调</b></a></li>
-                <li class=""><a href="javascript:void(0)"><b>粮油调味</b></a></li>
-                <li class=""><a href="javascript:void(0)"><b>母婴食品</b></a></li>
-            </ul>
-        </div>
-    </div>
+   
 
 </body>
 
@@ -974,18 +963,18 @@
         })
         // console.log(document.getElementsByClassName(".nav_r_li").innerText);
 
-        if (localStorage.getItem("username")) {
-            // console.log($(".nav_r_li").children().remove().end().text());
-            // let cc= $(".nav_r.li").clone().children();
-            // console.log(cc);
+        // if (localStorage.getItem("username")) {
+        //     // console.log($(".nav_r_li").children().remove().end().text());
+        //     // let cc= $(".nav_r.li").clone().children();
+        //     // console.log(cc);
             
-            // $(".nav_r_li").children().remove().end().text(localStorage.getItem("username") + "的账户")
-            // $(".nav_r_li").html(cc)
+        //     // $(".nav_r_li").children().remove().end().text(localStorage.getItem("username") + "的账户")
+        //     // $(".nav_r_li").html(cc)
             
             
-            $(".nav_r_li").text(localStorage.getItem("username")+"的账户")
-            $("#login_c").css("display", "none")
-        }
+        //     $(".nav_r_li").text(localStorage.getItem("username")+"的账户")
+        //     $("#login_c").css("display", "none")
+        // }
 
 
         // var contStr = $('.nav_r_li').contents().filter(function (index, content) {
@@ -999,6 +988,25 @@
         // console.log(contStr);
         
 
+    let username = localStorage.getItem("username");
+    if (localStorage.getItem("username")) {
+        $(".nav_r_li").text(localStorage.getItem("username") + "的账户")
+        $("#login_c").css("display", "none")
+    }
+
+    let phone = localStorage.getItem("phone");
+    $.ajax({
+        url:"./php/shopperCarA.php",
+        data:{"phone":phone},
+        dataType:"json"
+    }).done(data=>{
+        let goodsNum =0;
+        data.forEach(item =>{
+                   goodsNum +=item.num*1
+               })
+            // console.log(goodsNum);
+            $("#car_jian").text(goodsNum)
+    })
 
 
 

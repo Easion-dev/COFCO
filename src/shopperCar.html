@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/shopperCar.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="car">
+        <div id="header_car">
+            <div class="car_name">
+                <span>Hi,欢迎来我买网</span>
+                <span id="name_c"><a href="./login.html"> 请登录</a></span>
+                <span><a href="./register.html">免费注册</a></span>
+            </div>
+        </div>
+        <div class="jindu">
+            <div class="logo">
+                <img src="./img/logo.png" alt="">
+            </div>
+            <div class="go_jindu">
+                <img src="./img/jindu.png" alt="">
+            </div>
+        </div>
+        <div class="trip">
+            <span class="tc_left">我的购物车</span>
+            <span class="tc_right"><a href="./shopper.html " target="_blank">继续购物></a></span>
+        </div>
+
+        <div class="order_car">
+            <div class="order_title">
+                <div class="quanxuan">
+                    <span>全选：</span>
+                    <input type="checkbox" value="">
+                </div>
+                <div class="order_title1">商品</div>
+                <div class="order_title2">单价</div>
+                <div class="order_title2">数量</div>
+                <div class="order_title2">小计</div>
+                <div class="order_title2">操作</div>
+            </div>
+
+            <div class="car_content">
+                <!-- 
+                <div class="car_shop">
+                    <div class="shop_one">
+                        <input class="shop_1" type="checkbox">
+                    </div>
+                    <div class="shop_img">
+                        <a href="javascript:void(0)" target="_blank">
+                            <img src="./img/shengxian-1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="shop_title">
+                        <a href="javascript:void(0)">
+                            <span>【Olé直供】日东红茶牌欧蕾味速溶奶茶固体饮料112g</span>
+                        </a>
+                    </div>
+                    <div class="shop_price">
+                        <span>￥<span>888</span></span>
+                    </div>
+                    <div class="shop_num">
+                        <div class="num_c">
+                            <input class="jia" type="button" value="+">
+                            <input class="num" type="text">
+                            <input class="jian" type="button" value="-">
+                        </div>
+
+                    </div>
+                    <div class="total_price">
+                        <span>￥<span>222</span></span>
+                    </div>
+                    <div class="car_del">
+                        <input type="button" value="删除">
+                    </div>
+
+                </div> -->
+
+                <div class="total">
+                    <div>
+                        <span>应付金额：</span>
+                        <span id="total_price">￥240</span>
+                    </div>
+                    <input type="button" value="去结算">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+<script src="./js/jquery-3.4.1.min.js"></script>
+<script src="./js/index-footer.js"></script>
+<script>
+    $(function () {
+        let name_c = localStorage.getItem("username");
+        let phone = localStorage.getItem("phone");
+        $("#name_c").text(name_c);
+
+        
+
+        $.ajax({
+            url: "./php/shopperCarB.php",
+            data: "phone=" + phone,
+            dataType: "json"
+        }).done(data => {
+            console.log(data);
+            let htmlstr = ``;
+            data.forEach(item => {
+                htmlstr += `
+                <div class="car_shop" data-sort=${item.goodsId}>
+                    <div class="shop_one">
+                        <input class="shop_1" type="checkbox">
+                    </div>
+                    <div class="shop_img">
+                        <a href="javascript:void(0)" target="_blank">
+                            <img src="${item.img}" alt="">
+                        </a>
+                    </div>
+                    <div class="shop_title">
+                        <a href="javascript:void(0)">
+                            <span>${item.title}</span>
+                        </a>
+                    </div>
+                    <div class="shop_price">
+                        <span>￥<span class="t_price">${item.price}</span></span>
+                    </div>
+                    <div class="shop_num">
+                        <div class="num_c">
+                            <input class="jia" type="button" value="+">
+                            <input class="num" type="text" value=${item.num}>
+                            <input class="jian" type="button" value="-">
+                        </div>
+
+                    </div>
+                    <div class="total_price">
+                        <span>￥<span class="to_price">${item.price*item.num*1}</span></span>
+                    </div>
+                    <div class="car_del">
+                        <input type="button" value="删除">
+                    </div>
+
+                </div>
+                `
+            });
+
+            
+                
+            
+
+
+            $(".car_content").prepend(htmlstr)
+            $("#total_price").text("￥0")
+            
+            function total_A() {
+                let total_B=0 ;
+                let data = $(".car_shop .shop_1");
+                data.each(function(){
+                    if($(this).prop("checked")==true){
+                        total_B+=$(this).parent().parent().find(".to_price").text()*1
+                    }
+                })
+                $("#total_price").text("￥"+total_B)
+                // $(".car_shop").on("click",".shop_1",function(){
+                //     // console.log($(this));
+                //     if($(".shop_1").is(":checked")){
+                //         total_B = total_B+$(this).parent().parent().find(".to_price").text()*1
+                //         $("#total_price").text("￥"+total_B);
+                //     }
+                        
+                //         // $(this).parent().parent().find(".to_price").text()
+                //         // total_B = total_B - $(this).parent().parent().find(".to_price").text()*1
+                //         // $("#total_price").text("￥"+total_B)
+                          
+                //     // console.log(total);
+                          
+                    
+                // })
+            }
+            
+            $(".shop_1").click(function () {
+                total_A()
+            })
+            console.log($(".quanxuan").find("input[type=checkbox]"));
+            
+            
+
+            // console.log($(".quanxuan").is(":checked"));
+
+            $(".quanxuan").click(function () {
+                // console.log($(".quanxuan").find("input[type=checkbox]"));
+
+                if ($(".quanxuan").find("input[type=checkbox]").is(":checked")) {
+                    $(".shop_1").prop("checked", true)
+                } else {
+                    $(".shop_1").prop("checked", false)
+                }
+                total_A()
+            })
+
+            // $(".")
+
+
+            $(".num_c .jia").click(function () {
+                // console.log($(this).next().val());
+                let num = $(this).next().val();
+                num++;
+                $(this).next().val(num);
+                let numA = $(this).next().val();
+                // console.log(numA);
+                
+                // $(this).next().val()+$(this).parent()
+                // console.log($(this).parent().parent().parent().find(".t_price").text());
+                let price = $(this).parent().parent().parent().find(".t_price").text();
+                let total = num*price*1;
+                // console.log(total);
+                $(this).parent().parent().parent().find(".to_price").text(total);
+                
+                // total_A(".jia")
+                total_A()
+                let goodsId = $(this).parent().parent().parent().data("sort")
+                // console.log(goodsId);
+                
+                $.ajax({
+                    url:"./php/upDatecount.php",
+                    data:{"phone":phone,"num":numA,"goodsId":goodsId}
+                })
+                
+            })
+            $(".num_c .jian").click(function () {
+                // console.log($(this).prev().val());
+                let num;
+                if ($(this).prev().val() <= 1) {
+                    $(this).prev().val(1);
+                    num = 1;
+                } else {
+                     num = $(this).prev().val();
+                    num--;
+                    $(this).prev().val(num)
+                }
+                console.log(num);
+                
+                let price = $(this).parent().parent().parent().find(".t_price").text();
+                let total = num*price*1;
+                // console.log(total);
+                $(this).parent().parent().parent().find(".to_price").text(total);
+                // total()
+                total_A()
+
+                let goodsId = $(this).parent().parent().parent().data("sort")
+                // console.log(goodsId);
+                
+                $.ajax({
+                    url:"./php/upDatecount.php",
+                    data:{"phone":phone,"num":num,"goodsId":goodsId}
+                })
+
+            })
+            // console.log($(".car_del").children("input"));
+            $(".car_del").children("input").click(function () {
+                let goodsId = $(this).parent().parent().data("sort")
+                alert("are you OK?");
+                $.ajax({
+                    url:"./php/datadel.php",
+                    data:{"phone":phone,"goodsId":goodsId}
+                })
+                $(this).parent().parent().remove();
+
+            })
+            
+            
+
+
+
+        })
+
+
+    })
+</script>

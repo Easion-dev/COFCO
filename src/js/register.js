@@ -88,10 +88,11 @@ $(function () {
             return
         }
         // console.log("sss");
+        let md5pass = $.trim($("#password1").val());
         let data = {
             username: $.trim($("#username").val()),
             phone: $.trim($("#phone").val()),
-            password: $.trim($("#password1").val()).slice(0, 15)
+            password: md5pass.slice(0, 15)
         }
         console.log(data);
 

@@ -12,7 +12,7 @@
             </ul>
             <ul>
                 <li>欢迎来我买网</li>
-                <li><a href="javascript:void(0)"></a>登陆</li>
+                <li id="login_c"><a href="javascript:void(0)"></a>登陆</li>
                 <li><a href="javascript:void(0)"></a>注册</li>
             </ul>
         </div>
@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     <span class="iconfont icon-gouwucheman"></span>
-                    <span>购物车<span>0</span>件</span>
+                    <a href="./shopperCar.html"><span>购物车<span id="car_jian">0</span>件</span></a>
                 </li>
                 <li class="t_item">|</li>
                 <li>客户服务↓</li>
@@ -71,5 +71,24 @@
     </div>
 </div> 
     `;
-    $("body").prepend(data)
+    $("body").prepend(data);
+    let username = localStorage.getItem("username");
+    if (localStorage.getItem("username")) {
+        $(".nav_r_li").text(localStorage.getItem("username") +"~的账户")
+        $("#login_c").css("display", "none")
+    }
+
+    let phone = localStorage.getItem("phone");
+    $.ajax({
+        url:"./php/shopperCarA.php",
+        data:{"phone":phone},
+        dataType:"json"
+    }).done(data=>{
+        let goodsNum =0;
+        data.forEach(item =>{
+                   goodsNum +=item.num*1
+               })
+            // console.log(goodsNum);
+            $("#car_jian").text(goodsNum)
+    })
 })()

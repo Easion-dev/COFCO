@@ -15,6 +15,7 @@
     }else{
       $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
        $_username = $data[0]["username"];
+       $_phone = $data[0]["phone"];
       $_password = $data[0]["password"];
      
       if($_password != $password)
@@ -23,8 +24,8 @@
           echo '{"status":"error","msg":"对不起，您的密码不正确！"}';
       }else{
         // 如果密码正确，那么就返回登录成功。
-        echo'{"status":"success","msg":"登录成功！！！","username":"'.$_username.'"}';
-      
+        echo'{"status":"success","msg":"登录成功！！！","username":"'.$_username.'","phone":"'.$_phone.'"}';
+        
       }
     }
     

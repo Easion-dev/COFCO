@@ -116,10 +116,19 @@
             }
 
             .odd{
-                width: 100px;
+                width: 200px;
                 height: 20px;
                 // background-color: #ccc;
                 margin: 20px;
+                .shu{
+                    width: 36px;
+                    height: 32px;
+                    // border: 1px solid #ccc;
+                    text-align: center;
+                    font: 12px/150% Arial, Tahoma,"宋体";
+                    line-height: 32px;
+                    float: left;
+                }
                 .jia{
                     width: 30px;
                     height: 30px;
@@ -160,8 +169,10 @@
                 text-align: center;
                 padding-top: 11px;
                 padding-bottom: 11px;
-                background: #3ea600;
+                background-color: #c40000;
+                float: left;
             }
+            
 
         }
     }

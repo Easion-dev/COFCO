@@ -48,10 +48,10 @@
 </html>
 <script src="./js/jquery-3.4.1.min.js"></script>
 <script src="./js/index-footer.js"></script>
-<script src=""></script>
+<!-- <script src=""></script> -->
 <script>
     $(function () {
-    $("#phone").val("1233333");
+    $("#phone").val("13413643005");
     $("#password").val("111 ");
     let check = {
         "phone": {
@@ -109,6 +109,7 @@
             if (data.status == "success") {
                 alert("登陆成功")
                 localStorage.setItem("username",data.username);
+                localStorage.setItem("phone",data.phone)
                 location.href="./index.html"
                
             } else {
