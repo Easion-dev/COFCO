@@ -11,9 +11,9 @@
                 </li>
             </ul>
             <ul>
-                <li>欢迎来我买网</li>
-                <li id="login_c"><a href="javascript:void(0)"></a>登陆</li>
-                <li><a href="javascript:void(0)"></a>注册</li>
+                <li><a href="./index.html">欢迎来我买网</a></li>
+                <li id="login_c"><a href="./login.html">登陆</a></li>
+                <li><a href="./register.html">注册</a></li>
             </ul>
         </div>
         <div class="nav_right">
@@ -75,7 +75,12 @@
     let username = localStorage.getItem("username");
     if (localStorage.getItem("username")) {
         $(".nav_r_li").text(localStorage.getItem("username") +"~的账户")
-        $("#login_c").css("display", "none")
+        $("#login_c").children().text("注销")
+        $("#login_c").children().click(function () {
+            localStorage.removeItem("username");
+            localStorage.removeItem ("phone")
+            $("#login_c").children().attr("href","./index.html")
+        })
     }
 
     let phone = localStorage.getItem("phone");

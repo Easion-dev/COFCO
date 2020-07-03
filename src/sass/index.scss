@@ -71,8 +71,8 @@
 
                     // cursor: pointer;
                     a {
-                        width: 100%;
-                        height: 100%;
+                        width: 50px;
+                        height: 32px;
                         color: #606060;
 
                         // cursor: pointer;
@@ -92,7 +92,7 @@
 
             .nav_ul {
                 >li:nth-of-type(1) {
-                    width: 74px;
+                    min-width: 74px;
                     height: 32px;
                     float: left;
                     @include nav_font;
@@ -816,10 +816,10 @@ Tahoma,
                     img {
                         width: 220px;
                         height: 170px;
-                        margin-left:10px;
+                        margin-left: 10px;
                         position: absolute;
                         transition-duration: 3s;
-                       
+
 
                         /* Opera */
                         // &:hover {
@@ -1093,4 +1093,48 @@ Tahoma,
     line-height: 40px;
     font-size: 20px;
     color: #fff;
+}
+
+.float-nav {
+    color: #606060;
+    font: 12px/150% Arial, Tahoma, "宋体";
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    width: 45px;
+    margin-top: -117px;
+    margin-left: -680px;
+    // display: block;
+    display: none;
+    // opacity: 0;
+    >ul {
+        li {
+            position: relative;
+            display: block;
+            width: 45px;
+            height: 38px;
+            line-height: 38px;
+            overflow: hidden;
+            border-bottom: 1px dotted #ddd;
+
+            a {
+                font: 12px/150% Arial, Tahoma, "宋体";
+                color: #606060;
+                height: 38px;
+                display: block;
+                width: 24px;
+                padding: 3px 6px;
+                text-align: center;
+                font-size: 12px;
+                line-height: 16px;
+                &:hover{
+                    color: #fff;
+                    background-color: #3a9900;
+                }
+            }
+        }
+
+    }
 }

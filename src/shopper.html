@@ -766,11 +766,11 @@
                         htmlstr +=`
                         <li class="product" id="${ele.id}">
                 <div class="pImg">
-                    <a href="./shop_detail.html?goodsId=${ele.id} " target='_blank'><img src="${ele.img}" alt=""></a>
+                    <a href="./shop_detail.html?goodsId=${ele.id} " ><img src="${ele.img}" alt=""></a>
                 </div>
                 <div class="price">￥<span>${ele.price}</span></div>
                 <div class="list_title">
-                    <a href="./shop_detail.html?goodsId=${ele.id} " target='_blank'>
+                    <a href="./shop_detail.html?goodsId=${ele.id} " >
                         <p>${ele.title}</p>
                     </a>
                     
@@ -787,12 +787,45 @@
                     })
                     $("#shopperA>ul").html(htmlstr)
 
+                    $(".product .rated").children("span:nth-of-type(3)").click(function () {
+                if (!(localStorage.getItem("username"))) {
+                    alert("请先登陆");
+                    return false;
+                } else {
+
+                    let goodsId = $(this).parent().parent().attr("id")
+                    // console.log(goodsId);
+                    let goodsNum = 0;
+                    $.ajax({
+                        url: "./php/shopperCar.php",
+                        data: {
+                            "phone": phone,
+                            "goodsId": goodsId
+                        },
+                        dataType: "json"
+                    }).done(data => {
+                        // console.log(data[0]);
+                        data.forEach(item => {
+                            goodsNum += item.num * 1
+                        })
+                        // console.log(goodsNum);
+                        $("#car_jian").text(goodsNum)
+                        alert("加入购物车成功")
+
+
+
+                    })
+                }
+
+            })
                     
                 }
                 
             })
             })
             
+
+           
 
             
             

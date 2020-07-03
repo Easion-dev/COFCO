@@ -17,7 +17,7 @@
     
     /* + 检查：检查当前的用户名在数据库中是否已经存在，如果存在那么就应该提示，否则就插入 */ 
     if($num ==0){
-        $sql = "INSERT INTO `shopperCar` (`phone`,`goodsId`,`num`) VALUES ($phone,$goodsId,1)";
+        $sql = "INSERT INTO `shopperCar` (`phone`,`goodsId`,`num`) VALUES ($phone,$goodsId,$numA)";
     }else{
         $sql = "UPDATE `shopperCar` SET `num` = `num` + $numA WHERE `phone`=$phone AND  `goodsId` = $goodsId";
     }

@@ -911,8 +911,17 @@
             </div>
         </div>
     </div>
+    <div class="float-nav" style="margin-top: -117px; margin-left: -660px; display: block;">
+        <ul>
+            <li><a href="#login_c"><b>头头导航</b></a></li>
+            <li><a href="#header"><b>大大轮播</b></a></li>
+            <li><a href="#main_wrap"><b>进口食品</b></a></li>
+            <li><a href="#ban_wrap"><b>干粮哒哒</b></a></li>
+            <li><a href="#feature"><b>杂货嘿嘿</b></a></li>
+            <li><a href="#footer"><b>尾尾</b></a></li>
+        </ul>
+    </div>
 
-   
 
 </body>
 
@@ -961,52 +970,51 @@
         $("#register").click(function () {
             window.open("./register.html")
         })
-        // console.log(document.getElementsByClassName(".nav_r_li").innerText);
-
-        // if (localStorage.getItem("username")) {
-        //     // console.log($(".nav_r_li").children().remove().end().text());
-        //     // let cc= $(".nav_r.li").clone().children();
-        //     // console.log(cc);
+        // document.addEventListener("scroll",function(){
+        //     // if(window.scrollTo(0,500)){
+        //     // console.log(OK);
             
-        //     // $(".nav_r_li").children().remove().end().text(localStorage.getItem("username") + "的账户")
-        //     // $(".nav_r_li").html(cc)
-            
-            
-        //     $(".nav_r_li").text(localStorage.getItem("username")+"的账户")
-        //     $("#login_c").css("display", "none")
-        // }
-
-
-        // var contStr = $('.nav_r_li').contents().filter(function (index, content) {
-        //     // console.log(content)
-        //     // if(content.nodeType==3){
-        //     //     content = 55555
-        //     //     return content
-        //     // }
-        //     return content.nodeType === 3;
-        // }).text();
-        // console.log(contStr);
+        // // }
+        // })
+        $(window).scroll(function(){
+            if($(window).scrollTop()>700){
+                $(".float-nav").fadeIn(100)
+            }else{
+                $(".float-nav").fadeOut(100)
+            }
+        })
         
 
-    let username = localStorage.getItem("username");
-    if (localStorage.getItem("username")) {
-        $(".nav_r_li").text(localStorage.getItem("username") + "的账户")
-        $("#login_c").css("display", "none")
-    }
+        // console.log(document.getElementsByClassName(".nav_r_li").innerText);
 
-    let phone = localStorage.getItem("phone");
-    $.ajax({
-        url:"./php/shopperCarA.php",
-        data:{"phone":phone},
-        dataType:"json"
-    }).done(data=>{
-        let goodsNum =0;
-        data.forEach(item =>{
-                   goodsNum +=item.num*1
-               })
+
+
+        let username = localStorage.getItem("username");
+        if (localStorage.getItem("username")) {
+            $(".nav_r_li").text(localStorage.getItem("username") + "的账户")
+            $("#login_c").children().text("注销")
+            $("#login_c").children().click(function () {
+                localStorage.removeItem("username");
+                localStorage.removeItem("phone")
+                $("#login_c").children().attr("href", "./index.html")
+            })
+        }
+
+        let phone = localStorage.getItem("phone");
+        $.ajax({
+            url: "./php/shopperCarA.php",
+            data: {
+                "phone": phone
+            },
+            dataType: "json"
+        }).done(data => {
+            let goodsNum = 0;
+            data.forEach(item => {
+                goodsNum += item.num * 1
+            })
             // console.log(goodsNum);
             $("#car_jian").text(goodsNum)
-    })
+        })
 
 
 
@@ -1024,7 +1032,7 @@
                 htmlstr_2 += `
                 <li>
                     <dl>
-                        <dt><img src="${data[i].img}" alt=""></dt>
+                        <dt><a href="./shopper.html"><img src="${data[i].img}"  alt=""></a></dt>
                         <dd>${data[i].title}</dd>
                         <dd>￥<span>${data[i].price}</span></dd>
                     </dl>
@@ -1059,7 +1067,7 @@
                 htmlstr_2 += `
                 <li>
                     <dl>
-                        <dt><img src="${data[i].img}" alt=""></dt>
+                        <dt><a href="./shopper.html"><img src="${data[i].img}" alt=""></a></dt>
                         <dd>${data[i].title}</dd>
                         <dd>￥<span>${data[i].price}</span></dd>
                     </dl>
@@ -1115,43 +1123,17 @@
 
 
 
-    // let data = document.querySelectorAll(".product-list")
-    // let arr =[];
-    // data.forEach(item =>{
+
+
+    // let data = document.querySelectorAll(".product-list>ul>li")
+    // let arr=[];
+    // data.forEach(item=>{
     //     let obj = {};
-    //     obj.img = item.src;
+    //     obj.img = item.querySelector(".lazyload").src;
+    //     obj.price = item.querySelector(".price").innerText;
+    //     obj.title = item.querySelector(".list-title>p").title;
+    //     obj.store = 2;
     //     arr.push(obj)
     // })
-    //     let data= document.querySelectorAll(".nav-con>li")
-    //    let arr =[];
-    //    data.forEach(item => {
-    //        let obj ={};
-    //        let arra=[];
-    //        obj.title = item.querySelector("h3 a").innerText;
-    //        obj.img = item.querySelector(".pic img").src;
-    //        let dd = item.querySelector(".clearfix").children;
-    //        console.log(dd);
-    //        for(let i in dd){
-    //            arra.push(dd[i].innerText)
-    //        }
-    //     //    dd.forEach(item=>{
-    //     //         arra.push(item.querySelector("a").innerText)
-    //     //    })
-    //        obj.shuju = arra;
-    //        arr.push(obj);
-    //    });
-
-    let data = document.querySelectorAll(".product-list>ul>li")
-    let arr=[];
-    data.forEach(item=>{
-        let obj = {};
-        obj.img = item.querySelector(".lazyload").src;
-        obj.price = item.querySelector(".price").innerText;
-        obj.title = item.querySelector(".list-title>p").title;
-        obj.store = 2;
-        arr.push(obj)
-    })
-    console.log(arr);
-    
-
+    // console.log(arr);
 </script>
