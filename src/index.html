@@ -1115,7 +1115,7 @@
 
 
 
-    // let data = document.querySelectorAll(".feature img")
+    // let data = document.querySelectorAll(".product-list")
     // let arr =[];
     // data.forEach(item =>{
     //     let obj = {};
@@ -1140,4 +1140,18 @@
     //        obj.shuju = arra;
     //        arr.push(obj);
     //    });
+
+    let data = document.querySelectorAll(".product-list>ul>li")
+    let arr=[];
+    data.forEach(item=>{
+        let obj = {};
+        obj.img = item.querySelector(".lazyload").src;
+        obj.price = item.querySelector(".price").innerText;
+        obj.title = item.querySelector(".list-title>p").title;
+        obj.store = 2;
+        arr.push(obj)
+    })
+    console.log(arr);
+    
+
 </script>

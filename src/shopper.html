@@ -584,7 +584,8 @@
     <ul class="screen">
         <li>
             <div><span>分类</span></div>
-            <div><span>树干饼</span></div>
+            <div><span class="storeA">粮油</span></div>
+            <div><span class="storeB">零食</span></div>
         </li>
         <li>
             <div><span>包装</span></div>
@@ -595,6 +596,7 @@
             <div><span>袋装</span></div>
         </li>
     </ul>
+
 
     <div id="shopperA">
         <ul>
@@ -628,40 +630,42 @@
 <script>
     $(function () {
         $(".cont").css("display", "none")
-    $(".all_kind").mouseenter(function () {
-        $(".cont").stop()
-        $(".cont").slideDown();
-    })
-    $(".all_kind").mouseleave(function () {
-        $(".cont").stop()
-        $(".cont").slideUp();
-        
+        $(".all_kind").mouseenter(function () {
+            $(".cont").stop()
+            $(".cont").slideDown();
+        })
+        $(".all_kind").mouseleave(function () {
+            $(".cont").stop()
+            $(".cont").slideUp();
 
-    })
-    let phone = localStorage.getItem("phone");
-    $.ajax({
-        url:"./php/shopperCarA.php",
-        data:{"phone":phone},
-        dataType:"json"
-    }).done(data=>{
-        let goodsNum =0;
-        data.forEach(item =>{
-                   goodsNum +=item.num*1
-               })
+
+        })
+        let phone = localStorage.getItem("phone");
+        $.ajax({
+            url: "./php/shopperCarA.php",
+            data: {
+                "phone": phone
+            },
+            dataType: "json"
+        }).done(data => {
+            let goodsNum = 0;
+            data.forEach(item => {
+                goodsNum += item.num * 1
+            })
             // console.log(goodsNum);
             $("#car_jian").text(goodsNum)
-    })
+        })
 
-    
-    $.ajax({
-        url:"./php/shopper.php",
-        dataType:"json"
-    }).done(data=>{
-        // console.log(data);
-        
-        let htmlstr=``;
-        data.forEach(item => {
-            htmlstr+=`
+
+        $.ajax({
+            url: "./php/shopper.php",
+            dataType: "json"
+        }).done(data => {
+            // console.log(data);
+
+            let htmlstr = ``;
+            data.forEach(item => {
+                htmlstr += `
             <li class="product" id="${item.id}">
                 <div class="pImg">
                     <a href="./shop_detail.html?goodsId=${item.id} " target='_blank'><img src="${item.img}" alt=""></a>
@@ -681,52 +685,127 @@
             </li>
             `
 
-        });
-        $("#shopperA>ul").html(htmlstr)
-        
-    // console.log($(".rated").children("span:nth-of-type(3)"));
-    $(".product .rated").children("span:nth-of-type(3)").click(function () { 
-        if(!(localStorage.getItem("username"))){
-            alert("请先登陆");
-            return false;
-        }else{
-            
-            let goodsId = $(this).parent().parent().attr("id")
-            // console.log(goodsId);
-            let goodsNum =0;
-            $.ajax({
-                url:"./php/shopperCar.php",
-                data:{
-                    "phone":phone,
-                    "goodsId":goodsId
-                },
-                dataType:"json"
-            }).done(data=>{
-                // console.log(data[0]);
-               data.forEach(item =>{
-                   goodsNum +=item.num*1
-               })
-            // console.log(goodsNum);
-            $("#car_jian").text(goodsNum)
-            alert("加入购物车成功")
+            });
+            $("#shopperA>ul").html(htmlstr)
 
+            // console.log($(".rated").children("span:nth-of-type(3)"));
+            $(".product .rated").children("span:nth-of-type(3)").click(function () {
+                if (!(localStorage.getItem("username"))) {
+                    alert("请先登陆");
+                    return false;
+                } else {
+
+                    let goodsId = $(this).parent().parent().attr("id")
+                    // console.log(goodsId);
+                    let goodsNum = 0;
+                    $.ajax({
+                        url: "./php/shopperCar.php",
+                        data: {
+                            "phone": phone,
+                            "goodsId": goodsId
+                        },
+                        dataType: "json"
+                    }).done(data => {
+                        // console.log(data[0]);
+                        data.forEach(item => {
+                            goodsNum += item.num * 1
+                        })
+                        // console.log(goodsNum);
+                        $("#car_jian").text(goodsNum)
+                        alert("加入购物车成功")
+
+
+
+                    })
+                }
+
+            })
+        })
+
+        function dataGo(data){
+            let arr =[];
+            data.forEach(item=>{
+                let obj = arr.filter((ele)=>ele.store == item.store)
+                if(obj.length ==0){
+                    arr.push({store:item.store,goods:[]})
+                }
+            })
+
+            data.forEach(item=>{
+                arr.forEach(ele=>{
+                    if(ele.store ==item.store){
+                        ele.goods.push(item);
+                    }
+                    
+                })
+            })
+            return arr;
+
+        }
+
+        $.ajax({
+            url:"./php/shopper.php",
+            data:"phone"+phone,
+            dataType:"json"
+        }).done(data=>{
+            eve = dataGo(data)
+            console.log(eve);
             
+            console.log(eve[0]);
+            // $("")
+            // console.log($("span[class^='store']"));
+            eve.forEach(item=>{
+                $("span[class^='store']").click(function(){
+                if($(this).text()== item.store){
+                    
+
+                    let htmlstr = ``;
+                    let arrA=[];
+                    item.goods.forEach(ele=>{
+                       
+                        htmlstr +=`
+                        <li class="product" id="${ele.id}">
+                <div class="pImg">
+                    <a href="./shop_detail.html?goodsId=${ele.id} " target='_blank'><img src="${ele.img}" alt=""></a>
+                </div>
+                <div class="price">￥<span>${ele.price}</span></div>
+                <div class="list_title">
+                    <a href="./shop_detail.html?goodsId=${ele.id} " target='_blank'>
+                        <p>${ele.title}</p>
+                    </a>
+                    
+                </div>
+                <div class="rated">
+                    <span><a href="javascript:void(0)">已评价0</a></span>
+                    <span><a href="javascript:void(0)">收藏</a></span>
+                    <span><a href="javascript:void(0)">加入购物车</a></span>
+                </div>
+            </li>
+                        `
+
+                        // arrA.push(htmlstr)
+                    })
+                    $("#shopperA>ul").html(htmlstr)
+
+                    
+                }
                 
             })
-        }
-        
+            })
+            
+
+            
+            
+        })
     })
-    })
-
-    })
-   
-    
-    
 
 
-    
 
-   
+
+
+
+
+
 
     // let arr=[];
     // let data = document.querySelectorAll(".tab-content");

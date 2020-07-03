@@ -620,6 +620,8 @@
 
         let oMirrorBox = document.getElementsByClassName("mirror-box");
         let oBox = document.getElementsByClassName("img_l");
+        console.log(oBox);
+        
         let oShowBox = document.getElementsByClassName("show-box");
         let boxOffsetLeft = oBox[0].offsetLeft;
         let boxOffsetTop = oBox[0].offsetTop;
@@ -638,14 +640,14 @@
 
             if (left1 < 0) {
                 left1 = 0;
-            } else if (left1 + mirrorWidth > 400) {
-                left1 = 400 - mirrorWidth;
+            } else if (left1 + mirrorWidth > oBox[0].offsetWidth) {
+                left1 = oBox[0].offsetWidth - mirrorWidth;
             }
 
             if (top1 < 0) {
                 top1 = 0;
-            } else if (top1 + mirrorHeight > 516) {
-                top1 = 516 - mirrorHeight;
+            } else if (top1 + mirrorHeight > oBox[0].offsetHeight) {
+                top1 = oBox[0].offsetHeight - mirrorHeight;
             }
 
 
