@@ -26,6 +26,11 @@
     if(!$retval){
         die('无法插入数据: ' . mysqli_error($conn));
     }
+
+    // $sql = "SELECT * FROM `shopperCar` WHERE `phone` = $phone ";
+
+    // $rr = mysqli_query($db, $sql);
+    
     echo '{"status":"success"}';
     
 

@@ -78,13 +78,16 @@
     min-height: 1600px;
     // background-color: #ccc;
     margin: 4px auto;
+    overflow: hidden;
 
     >ul {
+        // overflow: hidden;
         >li {
             min-width: 234px;
             min-height: 400px;
             float: left;
             transition: 0.4s;
+            margin-bottom: 2px;
             &:hover{
                 box-shadow: 0 4px 6px  rgba(0,0,0,22);
             }
